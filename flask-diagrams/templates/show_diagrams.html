@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask在网页上展示图片</title>
+    <!-- 引入 echarts.js -->
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+
+<h1>1、展示Matplotlib图片</h1>
+<div><img src="/static/{{ matplotlib_png }}"/></div>
+
+<h1>2、展示Seaborn图片</h1>
+<div><img src="/static/{{ seaborn_png }}"/></div>
+
+<h1>3、展示Pyecharts图片</h1>
+<div id="pyecharts_pie" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('pyecharts_pie'));
+    // 指定图表的配置项和数据
+    var option = {{ pie_options | safe }};
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+<div style="height: 300px"></div>
+</body>
+</html>
